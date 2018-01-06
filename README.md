@@ -1,6 +1,6 @@
 # A simulation of Buffon's needle experiment to calculate PI
 
-Given a set of parallel lines with internal spacing S, the probability that a needle with length L will cross a line is given by [1]:
+Given a grid of parallel lines with internal spacing S, the probability that a needle with length L that is dropped on the grid will cross a line is given by [1]:
 
 P = (2*L)/(S*PI)
 

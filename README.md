@@ -1,13 +1,13 @@
-# A simulation of Buffon's needle experiment to calculate PI
+# A simulation of Buffon's needle experiment to calculate *Pi*
 
-Given a grid of parallel lines with internal spacing $S$, the probability that a needle with length L that is dropped on the grid will cross a line is given by [1]:
+If a needle with length *L* is randomly dropped on a grid of parallel lines with internal spacing *S* where *S*>*L*, the probability that the needle will cross a line is given by:
 
-P = (2*L)/(S*PI)
+*P* = (2\**L*)/(*S*\**Pi*)
 
-Therefore, PI can be approximated as:
+as described [here](https://en.wikipedia.org/wiki/Buffon%27s_needle). Therefore, *Pi* can be approximated as:
 
-PI = (2*L)/(S*N_crossings/N_total)
+*Pi* = (2\**L*)/(*S*\**N_crossings*/*N_total*)
 
-This python program simulates the needle tosses using the ROOT package to get an approximation for PI.
+where *N_total* is the total number of needle drops, and *N_crossings* is the total number of line crossings.
 
-[1]: https://en.wikipedia.org/wiki/Buffon%27s_needle
+[This python program](https://github.com/gmalim/buffon_pi_simulation/blob/master/buffon_pi.py) simulates the needle tossing experiment to calculate *Pi* using the [ROOT](https://root.cern.ch/) data analysis package.

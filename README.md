@@ -10,6 +10,6 @@ as first posed in the 18th century by Georges-Louis Leclerc, Comte de Buffon ([s
 
 where *N_total* is the total number of needles, and *N_crossings* is the total number of needles that crossed a line.
 
-This simple python program simulates Buffon's needle tossing experiment to calculate *Pi* using [PyROOT](https://root.cern.ch/pyroot), a Python extension module to the ROOT data analysis package.
+These simple python programs simulates Buffon's needle tossing experiment to calculate *Pi*, using [Matplotlib](https://matplotlib.org) and [PyROOT](https://root.cern.ch/pyroot), a Python extension module to the ROOT data analysis package.
 
-Fun fact: The formula is valid even if you bend the needle in any way you want (subject to the constraint that it must lie in a plane), i.e. Buffon's "noodle" experiment.
+Not simulated here but still a fun fact: The formula is valid even if you bend the needle in any way you want (subject to the constraint that it must lie in a plane), turning Buffon's needle experiment into a noodle experiment.

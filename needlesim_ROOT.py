@@ -6,12 +6,11 @@ Simulate Buffon's needle experiment to calculate PI.
 import random
 import math
 import ROOT
-#import time
+import time
 
 def needlesim_ROOT():
 
-    #random.seed(42)
-    #start = time.time()
+    random.seed(42)
     
     print("-----------------------------------------------------------------------")
     print("  This is a simulation of Buffon's needle experiment to calculate PI:  ")
@@ -40,21 +39,20 @@ def needlesim_ROOT():
         else:
             print('Unfortunately needle length over grid spacing ratio is not between 0 and 1, try again...')
 
+    start = time.time()
+
     # Create ROOT canvas:
             
-    c1 = ROOT.TCanvas('c1', "Simulation of Buffon's needle experiment", 0, 0, 500, 500)
-    #c1.SetGridx(0)
-    #c1.SetGridy(1)
-    c1.SetLeftMargin(0.15)
-    c1.SetRightMargin(0.15)
-    c1.SetTopMargin(0.2)
-    c1.SetBottomMargin(0.2)
+    mycanvas = ROOT.TCanvas('mycanvas', "Simulation of Buffon's needle experiment", 0, 0, 500, 500)
+    #mycanvas.SetGridx(0)
+    #mycanvas.SetGridy(1)
+    mycanvas.SetLeftMargin(0.15)
+    mycanvas.SetRightMargin(0.15)
+    mycanvas.SetTopMargin(0.2)
+    mycanvas.SetBottomMargin(0.2)
 
     dummyhisto = ROOT.TH2D('dummyhisto', '', 100, -5, 5, 100, -5, 5)
     dummyhisto.SetStats(0)
-    #dummyhisto.Draw()
-    #dummyhisto.GetXaxis().SetTitle('x')
-    #dummyhisto.GetYaxis().SetTitle('y')
     dummyhisto.Draw("AH")
 
     gridlines = [] # to save TLine objects, otherwise they are not drawn
@@ -100,27 +98,6 @@ def needlesim_ROOT():
         needle.Draw()
         needles.append(needle)        
 
-    # Create text:
-        
-    text0 = "Simulation of Buffon's needle experiment:"
-    text0_ttext = ROOT.TText(-5.5, 7, text0);
-    text0_ttext.SetTextSize(0.03);
-    text0_ttext.Draw();
-
-    text1 = "Needle length / Grid spacing (L/S) = {}".format(LSratio)
-    text1_ttext = ROOT.TText(-5.5, 6, text1);
-    text1_ttext.SetTextSize(0.03);
-    text1_ttext.Draw();
-        
-    textnt_ttext = ROOT.TText(-4.5, 4.32, "N_total = {}".format(n));
-    textnt_ttext.SetTextSize(0.03);
-    textnt_ttext.Draw();
-        
-    textnc_ttext = ROOT.TText(-4.5, -4.62, "N_crossings = {}".format(count));
-    textnc_ttext.SetTextSize(0.03);
-    textnc_ttext.SetTextColor(2);
-    textnc_ttext.Draw();
-        
     # Calculate PI and error wrt real PI:
 
     if (count > 0):
@@ -136,20 +113,37 @@ def needlesim_ROOT():
     print('=> Pi_sim ~= 2*(L/S)*(N_t/N_c) = {}'.format(pi_approx))
     print('=> (Pi_sim - Pi) / Pi * 100 = {:.3f}%'.format(error))
 
-    text2 = "Pi ~= 2*(L/S)*(N_total/N_crossings) = {}*{}/{} = {:.6f}".format(2*LSratio,n,count,pi_approx)
-    text2_ttext = ROOT.TText(-5.5, -6.25, text2);
-    text2_ttext.SetTextSize(0.03);
-    text2_ttext.Draw();
+    # Create text:
+        
+    text1 = ROOT.TText(-5.5, 7, "Simulation of Buffon's needle experiment:");
+    text1.SetTextSize(0.03);
+    text1.Draw();
 
-    text3 = "(Pi_sim - Pi) / Pi * 100 = {:.3f}%".format(error)
-    text3_ttext = ROOT.TText(-5.5, -7, text3);
-    text3_ttext.SetTextSize(0.03);
-    text3_ttext.Draw();
+    text2 = ROOT.TText(-5.5, 6, "Needle length / Grid spacing (L/S) = {}".format(LSratio));
+    text2.SetTextSize(0.03);
+    text2.Draw();
+        
+    text3 = ROOT.TText(-4.5, 4.32, "N_total = {}".format(n));
+    text3.SetTextSize(0.03);
+    text3.Draw();
+        
+    text4 = ROOT.TText(-4.5, -4.62, "N_crossings = {}".format(count));
+    text4.SetTextSize(0.03);
+    text4.SetTextColor(2);
+    text4.Draw();
+        
+    text5 = ROOT.TText(-5.5, -6.25, "Pi ~= 2*(L/S)*(N_total/N_crossings) = {}*{}/{} = {:.6f}".format(2*LSratio,n,count,pi_approx));
+    text5.SetTextSize(0.03);
+    text5.Draw();
+
+    text6 = ROOT.TText(-5.5, -7, "(Pi_sim - Pi) / Pi * 100 = {:.3f}%".format(error));
+    text6.SetTextSize(0.03);
+    text6.Draw();
     
-    c1.Update()
+    mycanvas.Update()
 
-    #end = time.time()
-    #print('time = {} ms'.format((end - start)*1000))
+    end = time.time()
+    print('time = {} ms'.format((end - start)*1000))
 
     ROOT.gApplication.Run()
         

@@ -6,12 +6,11 @@ Simulate Buffon's needle experiment to calculate PI.
 import random
 import math
 import matplotlib.pyplot as plt
-#import time
+import time
 
 def needlesim_Matplotlib():
 
-    #random.seed(42)    
-    #start = time.time()
+    random.seed(42)    
     
     print("-----------------------------------------------------------------------")
     print("  This is a simulation of Buffon's needle experiment to calculate PI:  ")
@@ -33,13 +32,15 @@ def needlesim_Matplotlib():
         
     badinput = True
     
-    #while (badinput):
-    LSratio = float(raw_input('Enter needle length over grid spacing ratio [between 0 and 1]: '))
-        #if (0 < LSratio < 1):
-        #    badinput = False
-        #else:
-        #    print('Unfortunately needle length over grid spacing ratio is not between 0 and 1, try again...')
+    while (badinput):
+        LSratio = float(raw_input('Enter needle length over grid spacing ratio [between 0 and 1]: '))
+        if (0 < LSratio < 1):
+            badinput = False
+        else:
+            print('Unfortunately needle length over grid spacing ratio is not between 0 and 1, try again...')
 
+    start = time.time()
+            
     # Create Matplotlib figure with gridlines:
     
     fig = plt.figure()
@@ -130,8 +131,8 @@ def needlesim_Matplotlib():
     #plt.text(-8, -9.5, r"$\frac{{\pi_{{sim}} - \pi}}{{\pi}} * 100 = {:.3f}\%$".format(error))
     plt.text(-5, -9.5, r"$(\pi_{{sim}} - \pi)/\pi * 100 = {:.3f}\%$".format(error))
     
-    #end = time.time()
-    #print('time = {} ms'.format((end - start)*1000))
+    end = time.time()
+    print('\ntime = {} ms'.format((end - start)*1000))
 
     plt.show()
 

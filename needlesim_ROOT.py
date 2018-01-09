@@ -143,7 +143,7 @@ def needlesim_ROOT():
     mycanvas.Update()
 
     end = time.time()
-    print('time = {} ms'.format((end - start)*1000))
+    print('\ntime = {} ms'.format((end - start)*1000))
 
     ROOT.gApplication.Run()
         

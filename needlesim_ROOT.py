@@ -122,8 +122,11 @@ def needlesim_ROOT():
     textnc_ttext.Draw();
         
     # Calculate PI and error wrt real PI:
-    
-    pi_approx = 2*LSratio*n/float(count)
+
+    if (count > 0):
+        pi_approx = 2*LSratio*n/float(count)
+    else:
+        pi_approx = 0
     error = (pi_approx - math.pi)/math.pi * 100
     
     print('Needle length / Grid spacing (L/S)           = {}'.format(LSratio))

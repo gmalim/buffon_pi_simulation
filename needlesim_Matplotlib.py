@@ -31,15 +31,14 @@ def needlesim_Matplotlib():
         else:
             print('Unfortunately number is not a positive integer, try again...')
         
-        
     badinput = True
     
-    while (badinput):
-        LSratio = float(raw_input('Enter needle length over grid spacing ratio [between 0 and 1]: '))
-        if (0 < LSratio < 1):
-            badinput = False
-        else:
-            print('Unfortunately needle length over grid spacing ratio is not between 0 and 1, try again...')
+    #while (badinput):
+    LSratio = float(raw_input('Enter needle length over grid spacing ratio [between 0 and 1]: '))
+        #if (0 < LSratio < 1):
+        #    badinput = False
+        #else:
+        #    print('Unfortunately needle length over grid spacing ratio is not between 0 and 1, try again...')
 
     # Create Matplotlib figure with gridlines:
     
@@ -50,16 +49,16 @@ def needlesim_Matplotlib():
         plt.plot([-4.5, 4.5], [i, i], color='black', linewidth=1)
 
     plt.xlim(-5,5)
-    plt.ylim(-5,5);
+    plt.ylim(-5,5)
         
     # Loop over needles:
 
     count = 0
 
-    xcoords_crossed    = []
-    ycoords_crossed    = []
-    xcoords_notcrossed = []
-    ycoords_notcrossed = []
+    xcoords_crossed    = [] # Needed for faster plotting
+    ycoords_crossed    = [] # Needed for faster plotting
+    xcoords_notcrossed = [] # Needed for faster plotting
+    ycoords_notcrossed = [] # Needed for faster plotting
     
     for i in range(n):
 
@@ -79,36 +78,35 @@ def needlesim_Matplotlib():
             if ((y2>k) and (y1<k)) or ((y2<k) and (y1>k)):
                 crossed = True
 
-        # Count & plot needles:
+        # Count & save needles:
                
         if crossed:
-            count += 1
-            
+            count += 1            
             xcoords_crossed.append(x1)
             xcoords_crossed.append(x2)
-            #xcoords_crossed.append(None)
+            xcoords_crossed.append(None)
             ycoords_crossed.append(y1)
             ycoords_crossed.append(y2)
-            #ycoords_crossed.append(None)
-            
+            ycoords_crossed.append(None)
             #plt.plot([x1, x2], [y1, y2], color='red', linewidth=1) # Slow
         else:
-            
             xcoords_notcrossed.append(x1)
             xcoords_notcrossed.append(x2)
-            #xcoords_notcrossed.append(None)
+            xcoords_notcrossed.append(None)
             ycoords_notcrossed.append(y1)
             ycoords_notcrossed.append(y2)
-            #ycoords_notcrossed.append(None)
-            
+            ycoords_notcrossed.append(None)
             #plt.plot([x1, x2], [y1, y2], color='blue', linewidth=1) # Slow
 
     plt.plot(xcoords_crossed,    ycoords_crossed,    color='red',  linewidth=1) # Fast
     plt.plot(xcoords_notcrossed, ycoords_notcrossed, color='blue', linewidth=1) # Fast
             
     # Calculate PI and error wrt real PI:
-    
-    pi_approx = 2*LSratio*n/float(count)
+
+    if (count > 0):
+        pi_approx = 2*LSratio*n/float(count)
+    else:
+        pi_approx = 0
     error = (pi_approx - math.pi)/math.pi * 100
     
     print('Needle length / Grid spacing (L/S)           = {}'.format(LSratio))

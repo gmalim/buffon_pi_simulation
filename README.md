@@ -12,4 +12,4 @@ where *N_total* is the total number of needles, and *N_crossings* is the total n
 
 These simple python programs simulate Buffon's needle tossing experiment to calculate $\pi$, using [Matplotlib](https://matplotlib.org) and [PyROOT](https://root.cern.ch/pyroot), a Python extension module to the ROOT data analysis package.
 
-Not simulated but interesting: The formula is valid even if you bend the needle in any way you want (subject to the constraint that it must lie in a plane), i.e. Buffon's noodle experiment.
+Not simulated but interesting: The formula is valid even if you bend the needle in any way you want (subject to the constraint that it must lie in a plane), i.e. Buffon's ~~needle~~ noodle experiment.

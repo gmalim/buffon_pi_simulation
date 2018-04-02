@@ -1,10 +1,10 @@
-#!/usr/bin/python -tt
+#!/usr/local/bin/python3 -tt
 """
 Simulate Buffon's needle experiment to calculate PI. 
 """
 
-import random
 import math
+import random
 import ROOT
 import time
 
@@ -21,7 +21,7 @@ def needlesim_ROOT():
     badinput = True
     
     while (badinput):
-        n = int(raw_input('Enter number of simulated needles: '))
+        n = int(input('Enter number of simulated needles: '))
         if (n > 0):
             if (n > 1000000):
                 print('Not enough needles! Try again...')
@@ -33,7 +33,7 @@ def needlesim_ROOT():
     badinput = True
     
     while (badinput):
-        LSratio = float(raw_input('Enter needle length over grid spacing ratio [between 0 and 1]: '))
+        LSratio = float(input('Enter needle length over grid spacing ratio [between 0 and 1]: '))
         if (0 < LSratio < 1):
             badinput = False
         else:

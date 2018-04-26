@@ -1,4 +1,4 @@
-# A simulation of Buffon's needle experiment to calculate $\pi$
+# A simulation of Buffon's needle experiment to calculate $$\pi$$
 
 If a needle with length *L* is randomly dropped on a grid of parallel lines with internal spacing *S*, where *S*>*L*, the probability *P* that the needle will cross a line is given by:
 
